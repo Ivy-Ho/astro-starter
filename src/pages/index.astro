@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button";
+const num = 1;
+const ppl = ["Bob", "Joe", "May"];
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<a class="link" href="/about">about page</a>
+		<h3>num : {num}</h3>
+		<p>person name:</p>
+		<ul>
+			{ppl.map((item) => <li>-{item}</li>)}
+		</ul>
+		<p>paragraph : <span id="paragraph"></span></p>
+		<p class="text-3xl">copyright:<span id="copyright"></span></p>
+		<span>click to add number :</span><Button client:load />
+	</main>
+</Layout>
+
+<style lang="scss">
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.link {
+		color: goldenrod;
+		&:hover {
+			color: blue;
+		}
+	}
+</style>
+
+<script>
+	import "../js/utils.js";
+
+	const p = document.querySelector("#paragraph");
+	p.textContent = "hi2";
+</script>
